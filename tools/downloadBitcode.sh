@@ -10,7 +10,7 @@ PACKAGE_VERSION=$(cat "${THIS_DIR}/../package.json" \
   | sed 's/[",]//g' \
   | tr -d '[[:space:]]')
 #WEBRTC_DL="https://github.com/react-native-webrtc/react-native-webrtc/releases/download/${PACKAGE_VERSION}/WebRTC.tar.xz"
-WEBRTC_DL="https://github.com/stasel/WebRTC/releases/download/94.0.0/WebRTC-M94.xcframework.zip"
+WEBRTC_DL="https://s3.eu-west-1.amazonaws.com/make.it.live.cdn.dev/WebRTC.xcframework.tar.xz"
 
 
 pushd "${THIS_DIR}/../apple"
@@ -21,7 +21,7 @@ rm -rf WebRTC.xcframework WebRTC.dSYMs
 # Download
 echo "Downloading files..."
 echo $PACKAGE_VERSION
-curl -L -s ${WEBRTC_DL} | unzip -
+curl -L -s ${WEBRTC_DL} | tar Jxf -
 echo "Done!"
 
 popd
